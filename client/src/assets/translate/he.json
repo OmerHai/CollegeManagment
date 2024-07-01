@@ -1,7 +1,8 @@
 {
     "USERS": {
         "USERS": "משתמשים",
-        "USERS_LIST": "רשימת משתמשים"
+        "USERS_LIST": "רשימת משתמשים",
+        "ADD_USER": "הוספת משתמש"
     },
     "GENERAL": {
         "LANGUAGES": {
