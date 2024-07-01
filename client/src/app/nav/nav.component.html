@@ -1,9 +1,15 @@
 <nav class="nav nav-pills">
     <li dropdown class="nav-item dropdown">
-        <a dropdownToggle class="nav-link dropdown-toggle" href="#" role="button">Dropdown link</a>
+        <a dropdownToggle class="nav-link dropdown-toggle" href="#" role="button">{{ 'USERS.USERS' | translate }}</a>
         <ul *dropdownMenu class="dropdown-menu">
             <li>
-                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">{{'USERS.USERS_LIST' | translate }}</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="#" (click)="switchLanguage('en')">English</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="#" (click)="switchLanguage('he')">עברית</a>
             </li>
         </ul>
     </li>
