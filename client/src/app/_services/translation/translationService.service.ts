@@ -23,4 +23,9 @@ export class TranslationService {
   public getCurrentLanguage(): string {
     return this.translate.currentLang || this.translate.defaultLang;
   }
+
+  public getCurrentDirection(): 'ltr' | 'rtl' {
+    const currentLanguage = this.getCurrentLanguage();
+    return currentLanguage == 'he' ? 'rtl' : 'ltr';
+  }
 }
