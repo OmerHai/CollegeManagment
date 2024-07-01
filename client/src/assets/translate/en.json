@@ -1,7 +1,8 @@
 {
     "USERS": {
         "USERS": "Users",
-        "USERS_LIST": "Users list"
+        "USERS_LIST": "Users list",
+        "ADD_USER": "Add user"
     },
     "GENERAL": {
         "LANGUAGES": {

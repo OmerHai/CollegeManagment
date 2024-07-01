@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { TableComponent } from '../../gui/table/table.component';
 import { User } from '../../_models/users/user';
 import { TableColumn } from '../../_models/gui/tableColumn';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, TranslateModule, CommonModule],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.css'
 })
