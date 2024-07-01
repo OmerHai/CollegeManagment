@@ -23,9 +23,6 @@ jobs:
       with:
         node-version: 'v20.15.0'
 
-    - name: Change to client directory
-      run: cd client
-      
     - name: Install dependencies
        run: |
         cd client
