@@ -3,11 +3,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService } from '../_services/translation/translationService.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [BsDropdownModule, CommonModule, TranslateModule],
+  imports: [BsDropdownModule, CommonModule, TranslateModule, RouterLink],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
