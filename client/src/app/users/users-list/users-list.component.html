@@ -1,0 +1,9 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold">{{'USERS.USERS_LIST' | translate}}</h2>
+      <button class="btn btn-primary btn-lg">
+        <i class="fa fa-user-plus me-2"></i> {{'USERS.ADD_USER' | translate}}
+      </button>
+    </div>
+    <app-table [data]="users" [columns]="columns"></app-table>
+</div>
