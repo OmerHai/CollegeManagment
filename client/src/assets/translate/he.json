@@ -1,0 +1,12 @@
+{
+    "USERS": {
+        "USERS": "משתמשים",
+        "USERS_LIST": "רשימת משתמשים"
+    },
+    "GENERAL": {
+        "LANGUAGES": {
+            "ENGLISH": "אנגלית",
+            "HEBREW": "עברית"
+        }  
+    }
+}
