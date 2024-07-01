@@ -2,5 +2,11 @@
     "USERS": {
         "USERS": "Users",
         "USERS_LIST": "Users list"
+    },
+    "GENERAL": {
+        "LANGUAGES": {
+            "ENGLISH": "English",
+            "HEBREW": "Hebrew"
+        }  
     }
 }

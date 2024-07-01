@@ -19,4 +19,8 @@ export class TranslationService {
   public switchLanguage(language: string) {
     this.translate.use(language);
   }
+
+  public getCurrentLanguage(): string {
+    return this.translate.currentLang || this.translate.defaultLang;
+  }
 }

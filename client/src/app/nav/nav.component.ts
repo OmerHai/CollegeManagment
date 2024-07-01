@@ -13,8 +13,14 @@ import { TranslationService } from '../_services/translation/translationService.
 })
 export class NavComponent {
   public translate = inject(TranslationService);
+  currentLanguage: string;
+
+  constructor() {
+    this.currentLanguage = this.translate.getCurrentLanguage();
+  }
   
   switchLanguage(language: string) {
     this.translate.switchLanguage(language);
+    this.currentLanguage = language;
   }
 }

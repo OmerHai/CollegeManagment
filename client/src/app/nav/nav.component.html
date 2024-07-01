@@ -1,15 +1,23 @@
 <nav class="nav nav-pills">
     <li dropdown class="nav-item dropdown">
+        <a dropdownToggle class="nav-link dropdown-toggle" href="#" role="button">
+            <i class="fa fa-globe"></i> {{ currentLanguage.toUpperCase() }}
+        </a>
+        <ul *dropdownMenu class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" href="#" (click)="switchLanguage('en')">{{ 'GENERAL.LANGUAGES.ENGLISH' | translate}}</a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="#" (click)="switchLanguage('he')">{{ 'GENERAL.LANGUAGES.HEBREW' | translate}}</a>
+            </li>
+        </ul>
+    </li>
+
+    <li dropdown class="nav-item dropdown">
         <a dropdownToggle class="nav-link dropdown-toggle" href="#" role="button">{{ 'USERS.USERS' | translate }}</a>
         <ul *dropdownMenu class="dropdown-menu">
             <li>
                 <a class="dropdown-item" href="#">{{'USERS.USERS_LIST' | translate }}</a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="#" (click)="switchLanguage('en')">English</a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="#" (click)="switchLanguage('he')">עברית</a>
             </li>
         </ul>
     </li>
