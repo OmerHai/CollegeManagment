@@ -6,6 +6,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 /**
  * Tests list:
@@ -31,7 +33,8 @@ describe('NavComponent', () => {
         BsDropdownModule.forRoot(),
         TranslateModule.forRoot()
       ],
-      providers: [TranslateService, TranslationService]
+      providers: [TranslateService, TranslationService, { provide: ActivatedRoute, useValue: { params: of({}) } }
+      ]
     })
     .compileComponents();
     
@@ -41,7 +44,7 @@ describe('NavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Created', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -104,10 +107,9 @@ describe('NavComponent', () => {
   it('Render user options correctly in Hebrew.', async () => {
     const languageDropdown = fixture.debugElement.queryAll(By.css('.nav-item.dropdown'))[1];
     languageDropdown.query(By.css('.nav-link')).triggerEventHandler('click', null);
-    fixture.detectChanges();
-    
     await fixture.whenStable();
     fixture.detectChanges();
+  
   
     const dropdownMenu = languageDropdown.query(By.css('.dropdown-menu'));
     expect(dropdownMenu).toBeTruthy('Dropdown menu should be rendered');
@@ -125,8 +127,6 @@ describe('NavComponent', () => {
 
     const languageDropdown = fixture.debugElement.queryAll(By.css('.nav-item.dropdown'))[1];
     languageDropdown.query(By.css('.nav-link')).triggerEventHandler('click', null);
-    fixture.detectChanges();
-
     await fixture.whenStable();
     fixture.detectChanges();
 
