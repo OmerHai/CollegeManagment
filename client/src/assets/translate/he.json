@@ -1,8 +1,8 @@
 {
     "USERS": {
-        "USERS": "סטודנטים",
-        "USERS_LIST": "רשימת סטודנטים",
-        "ADD_USER": "הוספת סטודנט"
+        "USERS": "משתמשים",
+        "USERS_LIST": "רשימת משתמשים",
+        "ADD_USER": "הוספת משתמש"
     },
     "GENERAL": {
         "LANGUAGES": {
