@@ -1,0 +1,8 @@
+<button 
+    [ngClass]="['btn', buttonClassType, buttonClassSize]"
+    [type]="type"
+    (click)="handleClick($event)"
+    >
+    <i *ngIf="icon" [ngClass]="['fa', icon, 'me-2']" ></i>
+    {{label}}
+</button>
