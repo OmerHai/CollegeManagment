@@ -15,6 +15,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
  */
 describe('TranslationService', () => {
   let service: TranslationService;
+  let translate: TranslateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,7 +25,9 @@ describe('TranslationService', () => {
       ],
       providers:[TranslateService]
     });
+
     service = TestBed.inject(TranslationService);
+    translate =  service.getTranslateInstance();
   });
 
   it('Created', () => {
@@ -32,31 +35,28 @@ describe('TranslationService', () => {
   });
 
   it('Default language is Hebrew', () => {
-    const defaultLanguage = service.getCurrentLanguage();
-    expect(defaultLanguage).toBe('he');
+    expect(translate.defaultLang).toBe('he');
   });
 
   it('Switch language to English', () => {
     service.switchLanguage('en');
-    const currentLanguage = service.getCurrentLanguage();
-    expect(currentLanguage).toBe('en');
+    expect(translate.currentLang).toBe('en');
   });
 
   it('Switch language to Hebrew', () => {
     service.switchLanguage('he');
-    const currentLanguage = service.getCurrentLanguage();
-    expect(currentLanguage).toBe('he');
+    expect(translate.currentLang).toBe('he');
   });
 
   it('Return ltr direction for English language', () => {
     service.switchLanguage('en');
-    const direction = service.getCurrentDirection();
+    const direction = service.setCurrentDirectionByLanguage('en');
     expect(direction).toBe('ltr');
   });
 
   it('Return rtl direction for Hebrew language', () => {
     service.switchLanguage('he');
-    const direction = service.getCurrentDirection();
+    const direction = service.setCurrentDirectionByLanguage('he');
     expect(direction).toBe('rtl');
   });
 });
