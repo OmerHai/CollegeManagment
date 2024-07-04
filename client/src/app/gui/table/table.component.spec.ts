@@ -47,6 +47,7 @@ describe('TableComponent', () => {
 
         const compiled = fixture.nativeElement as HTMLElement;
         const headers = compiled.querySelectorAll('th');
+
         expect(headers.length).toBe(2);
         expect(headers[0].textContent?.trim()).toBe('ID');
         expect(headers[1].textContent?.trim()).toBe('Name');
@@ -73,6 +74,7 @@ describe('TableComponent', () => {
 
     it('Paginate data works', () => {
         const paginator = fixture.nativeElement.querySelector('mat-paginator');
+        
         expect(paginator).toBeTruthy();
       });
 });
