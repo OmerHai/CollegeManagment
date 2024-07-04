@@ -16,16 +16,15 @@ export class TranslationService {
     this.translate.setDefaultLang('he');
   }
 
+  public getTranslateInstance() {
+    return this.translate;
+  }
+
   public switchLanguage(language: string) {
     this.translate.use(language);
   }
 
-  public getCurrentLanguage(): string {
-    return this.translate.currentLang || this.translate.defaultLang;
-  }
-
-  public getCurrentDirection(): 'ltr' | 'rtl' {
-    const currentLanguage = this.getCurrentLanguage();
+  public setCurrentDirectionByLanguage(currentLanguage: string): 'ltr' | 'rtl' {
     return currentLanguage == 'he' ? 'rtl' : 'ltr';
   }
 }
