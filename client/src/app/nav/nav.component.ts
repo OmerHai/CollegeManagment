@@ -18,13 +18,13 @@ export class NavComponent {
   textDirection: 'ltr' | 'rtl';
 
   constructor() {
-    this.currentLanguage = this.translate.getDefaultLanguage()
-    this.textDirection = this.translate.getCurrentDirection(this.currentLanguage);
+    this.currentLanguage = this.translate.getTranslateInstance().defaultLang;
+    this.textDirection = this.translate.setCurrentDirectionByLanguage(this.currentLanguage);
   }
   
   switchLanguage(language: string) {
     this.translate.switchLanguage(language);
     this.currentLanguage = language;
-    this.textDirection = this.translate.getCurrentDirection(this.currentLanguage);
+    this.textDirection = this.translate.setCurrentDirectionByLanguage(this.currentLanguage);
   }
 }
