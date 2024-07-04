@@ -20,12 +20,11 @@ export class TranslationService {
     this.translate.use(language);
   }
 
-  public getCurrentLanguage(): string {
-    return this.translate.currentLang || this.translate.defaultLang;
+  public getDefaultLanguage(): string {
+    return this.translate.defaultLang;
   }
 
-  public getCurrentDirection(): 'ltr' | 'rtl' {
-    const currentLanguage = this.getCurrentLanguage();
+  public getCurrentDirection(currentLanguage: string): 'ltr' | 'rtl' {
     return currentLanguage == 'he' ? 'rtl' : 'ltr';
   }
 }
