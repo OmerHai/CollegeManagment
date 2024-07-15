@@ -10,6 +10,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
  * 2. Render table headers.
  * 3. Render table cells.
  * 4. Paginate data works.
+ * 5. Refresh data works.
  */
 
 describe('TableComponent', () => {
@@ -76,5 +77,33 @@ describe('TableComponent', () => {
         const paginator = fixture.nativeElement.querySelector('mat-paginator');
         
         expect(paginator).toBeTruthy();
-      });
+    });
+
+    it('Refresh data works', () => {
+        component.columns = [
+            { columnId: 'id', header: 'ID', cell: (element: any) => `${element.id}` },
+            { columnId: 'name', header: 'Name', cell: (element: any) => `${element.name}` }
+        ];
+        component.dataSource = new MatTableDataSource([{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }]);
+
+        fixture.detectChanges();
+
+        var newData = [{ id: 3, name: 'Jin' }, { id: 4, name: 'Shlomi' }];
+        component.data = newData;
+        component.refresh();
+        fixture.detectChanges();
+
+        const compiled = fixture.nativeElement as HTMLElement;
+        const rows = compiled.querySelectorAll('tr');
+
+        expect(rows.length).toBe(5);
+        expect(rows[1].firstElementChild?.textContent?.trim()).toBe('1');
+        expect(rows[1].lastElementChild?.textContent?.trim()).toBe('John');
+        expect(rows[2].firstElementChild?.textContent?.trim()).toBe('2');
+        expect(rows[2].lastElementChild?.textContent?.trim()).toBe('Jane');
+        expect(rows[3].firstElementChild?.textContent?.trim()).toBe('3');
+        expect(rows[3].lastElementChild?.textContent?.trim()).toBe('Jin');
+        expect(rows[4].firstElementChild?.textContent?.trim()).toBe('4');
+        expect(rows[4].lastElementChild?.textContent?.trim()).toBe('Shlomi');
+    });
 });

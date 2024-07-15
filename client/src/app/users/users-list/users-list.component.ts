@@ -1,8 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { TableComponent } from '../../gui/table/table.component';
 import { User } from '../../_models/users/user';
 import { TableColumn } from '../../_models/gui/tableColumn';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ButtonComponent } from '../../gui/button/button.component';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -15,17 +15,18 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [TableComponent, CommonModule, ButtonComponent, TranslateModule],
+  imports: [TableComponent, CommonModule, ButtonComponent, TranslateModule, NgFor],
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
+  @ViewChild(TableComponent) usersTable!: TableComponent<User>;
+
   private translate = inject(TranslateService);
   private fb = inject(FormBuilder);
   private dialog = inject(MatDialog);
   private userService = inject(UserService);
   private toastr = inject(ToastrService);
-
 
   addButtonLabel: string = '';
   addDialogData: DialogData = {
@@ -45,8 +46,21 @@ export class UsersListComponent implements OnInit {
       this.setAddUserText();
     });
     this.setAddUserText();
+    
+
+    
+  }
+
+  ngAfterViewInit() {
+    this.loadUsers();
+  }
+
+  loadUsers() {
     this.userService.getUsers().subscribe({
-      next: users => this.users = users,
+      next: users => {
+        this.usersTable.data = users;
+        this.usersTable.refresh();
+      },
       error: () => this.toastr.error()
     });
   }
