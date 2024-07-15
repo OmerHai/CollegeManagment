@@ -11,8 +11,10 @@ builder.Services.AddDbContext<DataContext>(opt => {
 });
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddControllers();
+builder.Services.AddCors();
 
 var app = builder.Build();
 app.MapControllers();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
 app.Run();
