@@ -9,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../gui/dialog/dialog.component';
 import { DialogData } from '../../_models/gui/dialogData';
+import { UserService } from '../../_services/users/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users-list',
@@ -21,6 +23,9 @@ export class UsersListComponent implements OnInit {
   private translate = inject(TranslateService);
   private fb = inject(FormBuilder);
   private dialog = inject(MatDialog);
+  private userService = inject(UserService);
+  private toastr = inject(ToastrService);
+
 
   addButtonLabel: string = '';
   addDialogData: DialogData = {
@@ -28,12 +33,7 @@ export class UsersListComponent implements OnInit {
     formGroup: this.fb.group({}),
     controls: []
   };
-
-  users: User[] = [
-    { id: 1, email: 'John Doe', password: 'Computer Science' },
-    { id: 2, email: 'Jane Smith', password: 'Mathematics' }
-  ];
-
+  users: User[] = [];
   columns: TableColumn<User>[] = [
     { columnId: 'id', header: 'ID', cell: (user: User) => `${user.id}` },
     { columnId: 'email', header: 'Email', cell: (user: User) => `${user.email}` },
@@ -45,6 +45,10 @@ export class UsersListComponent implements OnInit {
       this.setAddUserText();
     });
     this.setAddUserText();
+    this.userService.getUsers().subscribe({
+      next: users => this.users = users,
+      error: () => this.toastr.error()
+    });
   }
 
   setAddUserText(): void {
